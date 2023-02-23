@@ -4,6 +4,7 @@ import OptionIcon from "../../assets/icons/option.png";
 
 const MainCon = styled.div`
   width: 25%;
+  max-width: 600px;
   background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 48%, rgba(254,254,254,1) 100%);
 `;
 
@@ -19,21 +20,21 @@ const nfts = new Array(5).fill({
 
 const RightBar = () => {
   return (
-    <MainCon className="v-[100vh] px-8 py-10 flex flex-col justify-between">
+    <MainCon className="v-[100vh] px-6 py-6 flex flex-col justify-between">
       <div>
-        <h1 className="text-3xl font-semibold">Top Creators</h1>
-        <div className="mt-5 flex flex-col gap-3 divide-y">
+        <h1 className="text-xl font-semibold">Top Creators</h1>
+        <div className="mt-3 flex flex-col gap-1 divide-y flex-1 max-h[50%]">
           {nfts.map(({ image, name, price, percentage }) => {
             return (
-              <div className="flex justify-between items-center font-semibold py-4">
+              <div className="flex justify-between items-center font-semibold py-3">
                 <div className="flex items-center">
-                  <img className="rounded-full w-[60px]" src={image} />
+                  <img className="rounded-full w-[30px]" src={image} />
                   <div className="pl-3 flex flex-col gap-1">
-                    <h1 className="font-semibold text-lg">{name}</h1>
-                    <div className="text-gray-500 font-medium"> {price}</div>
+                    <h1 className="font-semibold text-sm">{name}</h1>
+                    <div className="text-gray-500 font-medium text-xs">{price}</div>
                   </div>
                 </div>
-                <div>{percentage}</div>
+                <div className="text-sm">{percentage}</div>
               </div>
             );
           })}
@@ -47,23 +48,23 @@ const RightBar = () => {
             <img src="https://wallpapers-clan.com/wp-content/uploads/2022/07/anime-default-pfp-3.jpg" className="w-[70px] rounded-full" />
           </div>
         </div>
-        <div className="py-8 pt-11 flex flex-col items-center gap-5">
-          <h1 className="font-semibold text-2xl">Jaskaran Singh</h1>
-          <div className="bg-gray-100 py-1 px-4 rounded-full font-medium">
+        <div className="py-8 pt-11 flex flex-col items-center gap-3">
+          <h1 className="font-semibold text-lg">Jaskaran Singh</h1>
+          <div className="bg-gray-100 py-1 px-4 text-xs rounded-full font-medium">
             0x1ej...4d3f
           </div>
-          <p className="text-center text-gray-500">
+          <p className="text-center text-gray-500 text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <div className="flex items-center gap-2">
-            <button className="bg-[#3772ff] py-3 px-5 text-white font-semibold rounded-full cursor-pointer">
+            <button className="bg-[#3772ff] py-2 px-4 text-white font-semibold text-sm rounded-full cursor-pointer">
               Follow +
             </button>
-            <div className="p-3 border-gray-300 border-2 rounded-full cursor-pointer ">
-              <img className="w-[20px] opacity-40" src={UploadIcon}  />
+            <div className="p-2 border-gray-300 border-[1px] rounded-full cursor-pointer ">
+              <img className="w-[15px] opacity-40" src={UploadIcon}  />
             </div>
-            <div className="p-3 border-gray-300 border-2 rounded-full cursor-pointer ">
-              <img className="w-[20px] opacity-40" src={OptionIcon}  />
+            <div className="p-2 border-gray-300 border-[1px] rounded-full cursor-pointer ">
+              <img className="w-[15px] opacity-40" src={OptionIcon}  />
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 const MainCon = styled.div`
-  width: 25%;
+  width: 20%;
 `;
 const LogoConatiner = styled.div``;
 
@@ -37,15 +37,15 @@ const LeftBar = () => {
       <div className="flex flex-col gap-8">
         <LogoConatiner className="flex items-center gap-3">
           <img
-            className="w-[50px]"
+            className="w-[40px]"
             src="https://csk-genesis-stage.s3.ap-southeast-1.amazonaws.com/assets/csk_new_logo_black.png"
           />
           <div>
-            <h1 className="text-3xl font-semibold">CoinSwitch</h1>
+            <h1 className="text-2xl font-semibold">CoinSwitch</h1>
             <h5 className="text-sm font-semibold text-slate-400">Creator</h5>
           </div>
         </LogoConatiner>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-3">
           {rounts.map(({ name }, index) => {
             return (
               <div
@@ -54,7 +54,7 @@ const LeftBar = () => {
                 }`}
               >
                 <h2
-                  className={`font-semibold text-lg ${
+                  className={`font-semibold text-sm ${
                     index === 0 ? "text-[#3b68fe]" : "text-[#a2adc0]"
                   } `}
                 >
