@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 const MainCon = styled.div`
-  width: 20%;
+  width: 18%;
 `;
 const LogoConatiner = styled.div``;
 
