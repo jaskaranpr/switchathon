@@ -3,7 +3,7 @@ import UploadIcon from "../../assets/icons/upload.png";
 import OptionIcon from "../../assets/icons/option.png";
 
 const MainCon = styled.div`
-  width: 25%;
+  width: 22%;
   max-width: 600px;
   background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 48%, rgba(254,254,254,1) 100%);
 `;
