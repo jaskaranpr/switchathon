@@ -1,5 +1,14 @@
 import styled from "styled-components";
-import { addDoc, collection } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  Firestore,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { firebaseDB } from "../../firebase.cofig";
 import SearchIcon from "../../assets/icons/search.png";
 import NftCard from "../../Components/NftCard";
@@ -7,21 +16,118 @@ import TopNftCard from "../../Components/TopNftCard";
 import PopularCreatorCard from "../../Components/PopularCreatorCard";
 
 const Home = () => {
-  const handleOnClick = async () => {
-    const docRef = await addDoc(collection(firebaseDB, "users"), {
-      first: "Alan",
-      middle: "Mathison",
-      last: "Turing",
+  const handleAddUser = async () => {
+    const cityRef = doc(firebaseDB, "users", "919643011147");
+    const docRef = await setDoc(cityRef, {
+      profile_image:
+        "https://images.theconversation.com/files/417198/original/file-20210820-25-1j3afhs.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
+      name: "chiranjeev",
+      client_id: "+919643011147",
+      wallet_address: "",
+      community_id: "@chiranjeev.t",
 
-      born: 1912,
+      friends: [
+        {
+          client_id: "+918360025206",
+          community_id: "@jaskaran99",
+          name: "Jaskaran Singh",
+          profile_image:
+            "https://images.theconversation.com/files/417198/original/file-20210820-25-1j3afhs.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
+          wallet_address: "",
+        }
+      ],
+    });
+
+    console.log(docRef);
+  };
+
+  const handleNewBalanceasync = async () => {
+    const docRef = await addDoc(collection(firebaseDB, "balances"), {
+      "2": {
+        btc: "150",
+        eth: "1200",
+        matic: "200000",
+      },
     });
   };
+
+  const handleUpdateWalletAddress = async () => {
+    const cityRef = doc(firebaseDB, "users", "2");
+
+    const docref = await updateDoc(cityRef, {
+      wallet_address: "wndc0e98wjiecnien",
+    });
+    console.log(docref, "docuref");
+  };
+
+  const handleUpdateFriends = async () => {
+    const friendRef = doc(firebaseDB, "users", "+911111111120");
+
+    const user = await getDoc(friendRef);
+
+    if (user.exists()) {
+      const myRef = doc(firebaseDB, "users", "+911111111121");
+
+      const userData = user.data();
+
+      const docref = await updateDoc(myRef, {
+        friends: arrayUnion({ ...userData }),
+      });
+      console.log("fdk", docref);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  };
+
+  // function uploadVideo() {
+  //   const storage = getStorage();
+  //   const storageRef = ref(storage, "videos/" + uuid());
+  //   const UploadTask = uploadBytesResumable(storageRef, orignalUrl.current);
+  //   UploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       setProgressBar(
+  //         Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+  //       );
+  //     },
+  //     (err) => {
+  //       dispatch(alertMessage("warning", "Somthing went Wrong"));
+  //     },
+  //     () => {
+  //       getDownloadURL(UploadTask.snapshot.ref).then((url) => {
+  //         uploadOnTheServer(url.split("&")[0]);
+  //       });
+  //     }
+  //   );
+  // }
+
+  // const handleFile = () => {
+  //   fileRef.current.click();
+  //   fileRef.current.addEventListener("change", function () {
+  //     const reader = new FileReader();
+
+  //     reader.addEventListener("load", () => {
+  //       console.log(this.files[0].size);
+  //       orignalUrl.current = this.files[0];
+  //       setFileType(this.files[0].type);
+  //       setFileUrl(reader.result);
+  //     });
+  //     reader.readAsDataURL(this.files[0]);
+  //   });
+  // };
+
   return (
     <div className="flex-1 py-10 px-7 ">
       <div className="bg-white py-2 px-4 w-[40%] rounded-full flex items-center gap-2">
         <img src={SearchIcon} className="w-[15px]" />
         <input className="focus-within:outline-none flex-1" type="text" />
       </div>
+      {/* <input  type="file" /> */}
+      <button onClick={handleAddUser}>handleAddUser</button>
+      {/* <button onClick={handleNewBalanceasync}>handleNewBalance</button> */}
+      {/* <button onClick={handleUpdateWalletAddress}>handleUpdateWalletAddress</button> */}
+      {/* <button onClick={handleUpdateFriends}>handleUpdateFriends</button> */}
       <div className="mt-4 flex gap-5">
         <NftCard
           image="https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=cb647d991d8897cc8a81d2c33c4406d5"
